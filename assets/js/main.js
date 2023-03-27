@@ -4,7 +4,7 @@ $(document).ready(function(){
 		return response.text()
 	  })
 	  .then(data => {
-		$("#header").html(data);
+		$("#_header").html(data);
 	  });
 
 	fetch("footer.html")
@@ -12,7 +12,7 @@ $(document).ready(function(){
 		return response.text()
 	  })
 	  .then(data => {
-		 $("#footer").html(data);
+		 $("#_footer").html(data);
 	  });
  
   
