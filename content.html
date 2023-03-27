@@ -1,0 +1,107 @@
+<?php
+$base_url = "http://bootstrap.com/template/";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="assets/img/favicon.png">
+		
+    <title>Contents</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">	
+
+    <script src="assets/vendor/jquery-3.3.1.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--
+	<script src="assets/vendor/flexslider/jquery.flexslider.js"></script>
+	<link rel="stylesheet" href="assets/vendor/flexslider/flexslider.css">
+	-->
+	<link rel="stylesheet" href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$.getJSON("datas/contents/index.json", function(result){
+				$.each(result, function(i, field){
+					var menu_contents = '<li><a href="content-'+field.alias+'-'+field.id+'.html"><span class="menu-icon"><i class="fa fa-arrow-circle-o-right"></i></span> <span class="menu-label"> '+field.title_menu+'</span></a></li>';				
+					<!-- console.log(menu_sanpham); -->	
+					$(menu_contents).insertAfter( "#id_contents_menu_right" );
+				});
+			});
+			var pathname = window.location.pathname; 
+			var alias = pathname.split("-").pop().replace('.html', '');
+			<!-- var sPageURL = window.location.search.substring(1); -->
+			<!-- var sParameterName = sPageURL.split('='); -->
+			<!-- var alias = sParameterName[1]; -->
+			var url_content_info = 'datas/contents/'+alias+'.json';
+			
+			 <!-- var sParameterName = sURLVariables[i].split('='); -->
+			<!-- console.log(alias); -->
+			$.getJSON(url_content_info, function(result){			
+				$("#id_product_list_title").html(result.title);
+				$("#id_contents_body_content").html(result.content);
+				$("title").html(result.title);
+			});		
+			
+		})
+	</script>	
+</head>
+<body>
+<div id="_header">Loading...</div>
+
+<!-- content -->
+<div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+					<div class="news-content">
+						<h2 class="page-heading">
+							<span class="page-heading-title" id="id_product_list_title">Bài viết</span>
+						</h2>
+						<!-- Nội dung -->
+						<span id="id_contents_body_content"></span>	
+					</div>          
+				</div>
+                <div class="col-md-5">
+						<div id="left_column">
+							<div class="block left-module">
+								<p class="title_block">Bài viết khác</p>
+								<div class="block_content">
+									<!-- layered -->
+									<div class="layered layered-category">
+										<div class="layered-content">
+											<ul class="tree-menu">
+												<span id="id_contents_menu_right"></span>	
+												
+										
+											</ul>
+										</div>
+									</div>
+									<!-- ./layered -->
+								</div>
+							</div>					
+						</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-sm-12 col-xs-12">
+
+
+
+
+		</div>
+	</div>
+</div>
+<!-- End content -->	
+<div id="_footer">Loading...</div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

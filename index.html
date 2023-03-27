@@ -1,1 +1,218 @@
-dev
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="assets/img/favicon.png">
+	
+    <title>Trang Chủ | localhost.com</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">	
+	
+    <script src="assets/vendor/jquery-3.3.1.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/flexslider/jquery.flexslider.js"></script>
+	<link rel="stylesheet" href="assets/vendor/flexslider/flexslider.css">
+	<link rel="stylesheet" href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+		
+		  $.getJSON("datas/banner.json", function(result){
+			$.each(result, function(i, field){
+				<!-- console.log(field); -->
+			<!-- var ul_image = '<li>' -->
+						<!-- + '<img class="img-responsive" src="assets/img/banner/'+field+'">' -->
+						<!-- + '</li>'; -->
+			  <!-- $("#banner").append(ul_image); -->
+			});
+			 $('.flexslider').flexslider({
+				animation: "slide",
+				controlNav: false
+			  });
+		  });
+
+		 
+		
+		$.getJSON("datas/products/best_selling_product.json", function(result){
+			$.each(result, function(i, field){
+			var price_1 = parseInt(field.price_1);
+			var price_2 = parseInt(field.price_2);
+				var html_contents = ''
+					+ '<div class="col-md-3 col-sm-6 col-xs-6">'
+					+ '<div class="card">'
+					+ '<img class="card-img-top" src="assets/img/products/'+field.image+'">'
+					+ '<div class="card-body">'
+					+ '	<h5 class="card-title"><a href="/product-detail-'+field.title+'-'+field.id+'.html">'+field.title+'</a></h5>'
+					+ '	<p class="card-text ">'
+					+ '	<span class="price">'
+                    + '                <del><span class="amount">'+price_1.toLocaleString()+'₫</span></del>'
+                    + '                <ins><span class="amount">'+price_2.toLocaleString()+'₫</span></ins>'
+                    + '            </span>'
+					+ '	</p>'
+					+ '	<a href="/product-detail-'+field.title+'-'+field.id+'.html" class="btn">Chi tiết</a>'
+					+ '	</div>'
+					+ '	</div>'
+					+ '	</div>';
+			
+				$(html_contents).insertAfter( "#id_home_best_selling_products" );
+			});
+		});
+		
+
+		  
+		})
+	</script>	
+	
+	<style>
+
+	
+	.right_slider>p {background: #3eab48; color: #fff; text-transform: uppercase; margin: 5px 0; text-align: center; font-weight: 600; padding: 8px 0;}
+	
+
+	</style>
+	
+</head>
+<body>
+<div id="_header"></div>
+
+    <div class="container">
+        <div class="row">
+
+			
+			<div class="col-md-8 col-sm-12 col-xs-12" style="padding: 0px;">
+				<div class="flexslider">
+					<ul id="banner" class="slides">						
+						<li><img class="img-responsive" src="images/banner/banner-2.jpg"></li>
+						<li><img class="img-responsive" src="images/banner/banner-4.jpg"></li>
+						<li><img class="img-responsive" src="images/banner/banner-6.jpg"></li>
+					</ul>
+				</div>			
+			</div>		
+
+
+			<div class="col-md-4 col-sm-12 col-xs-12 right_slider"  style="padding: 0px;">
+					<!--
+											
+										
+			-->
+			<img class="img-thumbnail rounded " src="images/banner-right-1.jpg">
+		<p><i class="fa fa-tty"></i> Zalo: 0671.760.860</p>
+		
+				
+						
+
+
+
+			</div>
+
+
+			
+		</div>
+	</div>
+	
+	
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 col-sm-4 col-xs-4">	
+				<div class="cate-item">
+						<img class="img-thumbnail rounded " src="images/item-hoa-tuoi-mai-mai.jpg" >					
+						<span>Hoa Tươi Mãi Mãi</span>
+				</div>	
+		</div>
+		<div class="col-md-3 col-sm-4 col-xs-4">	
+				<div class="cate-item">
+					<img class="img-thumbnail rounded " src="images/da-dang-cac-loai-hoa-kho.jpg" >					
+					<span>Hoa Khô</span>
+				</div>	
+		</div>
+		<div class="col-md-3 col-sm-4 col-xs-4">	
+				<div class="cate-item">
+					<img class="img-thumbnail rounded " src="images/xuong-la.jpg" >
+					<span>Xương Lá</span>
+				</div>	
+		</div>
+		<div class="col-md-3 col-sm-4 col-xs-4">	
+				<div class="cate-item">
+					<img class="img-thumbnail rounded " src="images/decor-handmade.jpg" >
+					<span>Decor / Handmade</span>
+					
+				</div>	
+		</div>
+		
+	</div>	
+</div>	
+
+    <div class="container">
+        <div class="row">
+
+			<span id="id_home_best_selling_products"></span>			
+		</div>
+	</div>
+
+
+<div class="container">
+	<div class="row services2">
+
+		<div class="col-xs-12 col-sm-6 col-md-4 services2-item">
+						<div class="service-wapper">
+							<div class="row">
+								<div class="col-sm-4 image">
+									<div class="icon">
+										<img src="assets/img/icon/icon-s2.png">
+									</div>
+									<h3 class="title">Giao hàng</h3>
+								</div>
+								<div class="col-sm-8 text">
+									Giao hàng tận nơi<br>
+									Thanh toán khi nhận hàng. 
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-4 services2-item">
+						<div class="service-wapper">
+							<div class="row">
+								<div class="col-sm-4 image">
+									<div class="icon">
+										<img src="assets/img/icon/icon-s3.png">
+									</div>
+									<h3 class="title">Sản phẩm</h3>
+								</div>
+								<div class="col-sm-8 text">
+									Sản phẩm chính hãng, bảo hành trên toàn quốc.
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-4 services2-item">
+						<div class="service-wapper">
+							<div class="row">
+								<div class="col-sm-4 image">
+									<div class="icon">
+										<img src="assets/img/icon/icon-s4.png">
+									</div>
+									<h3 class="title">Contact</h3>
+								</div>
+								<div class="col-sm-8 text">
+									Shopee: <a href="https://shopee.vn/happinessflower" target="_blank">happinessflower</a><br/>
+									Facebook: <a href="https://www.facebook.com/happinessflower.vn/" target="_blank">happinessflower</a><br/>
+									Zalo: <a href="tel:0971760860">0971.760.860</a>
+								</div>
+							</div>
+						</div>
+					</div>
+	
+	
+	</div>	
+</div>	
+
+
+<div id="_footer"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

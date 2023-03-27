@@ -1,0 +1,151 @@
+<?php
+$base_url = "http://bootstrap.com/template/";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="assets/img/favicon.png">
+		
+    <title>Sản Phẩm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">	
+
+    <script src="assets/vendor/jquery-3.3.1.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/flexslider/jquery.flexslider.js"></script>
+	<link rel="stylesheet" href="assets/vendor/flexslider/flexslider.css">
+	<link rel="stylesheet" href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="assets/css/style.css">
+	
+<script src="assets/vendor/paginate/jquery.paginate.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+		 	$.getJSON("datas/category/index.json", function(result){
+				$.each(result, function(i, field){	
+					var menu_sanpham = '<li><span><a href="/product-list-'+field.name+'-'+field.alias+'.html"><i class="fa fa-arrow-circle-right"></i> '+field.name+'</a></span></li>';				
+					<!-- console.log(menu_sanpham); -->	
+					$(menu_sanpham).insertAfter( "#id_product_list_menu_right" );
+				});
+			});
+			var pathname = window.location.pathname; 
+			var alias = pathname.split("-").pop().replace('.html', '');
+
+			<!-- var sPageURL = window.location.search.substring(1); -->
+			<!-- var sParameterName = sPageURL.split('='); -->
+			<!-- var alias = sParameterName[1]; -->
+			
+			var url_category_info = 'datas/category/'+alias+'.json';
+			var url_product_list = 'datas/products/product_list_'+alias+'.json';
+			 <!-- var sParameterName = sURLVariables[i].split('='); -->
+			<!-- console.log(alias); -->
+			$.getJSON(url_product_list, function(result){
+				$.each(result, function(i, field){
+				var price_1 = parseInt(field.price_1);
+				var price_2 = parseInt(field.price_2);
+					var html_contents = ''
+						+ '<li class="col-md-3 col-sm-6 col-xs-6">'
+						+ '<div class="card">'
+						+ '<img onError="this.onerror=null;this.src=\'assets/img/no-image.png\';" class="card-img-top" src="assets/img/products/'+field.image+'">'
+						+ '<div class="card-body">'
+						+ '	<h5 class="card-title"><a href="/product-detail-'+field.title+'-'+field.id+'.html">'+field.title+'</a></h5>'
+						+ '	<p class="card-text ">'
+						+ '	<span class="price">'
+						+ '                <del><span class="amount">'+price_1.toLocaleString()+'₫</span></del>'
+						+ '                <ins><span class="amount">'+price_2.toLocaleString()+'₫</span></ins>'
+						+ '            </span>'
+						+ '	</p>'
+						+ '	<a href="/product-detail-'+field.title+'-'+field.id+'.html" class="btn">Chi tiết</a>'
+						+ '	</div>'
+						+ '	</div>'
+						+ '	</li>';
+					<!-- console.log(menu_sanpham); -->
+					$(html_contents).insertAfter( "#id_product_list_product_list" );
+					<!-- $("#id_product_list_product_list").append(html_contents); -->
+					
+				});
+					
+			}).done(function() {
+				<!-- console.log( "second success" ); -->
+				<!-- $('#listPage').paginate(); -->
+				$('#listPage').paginate({
+					perPage: 12
+				});
+					<!-- $("#listPage").JPaging({ -->
+					  <!-- pageSize: 8 -->
+					<!-- }); -->
+			  });
+			
+			$.getJSON(url_category_info, function(result){
+					<!-- console.log(); -->
+					$("#id_product_list_title").html(result.tendanhmuc);
+					$("title").html(result.tendanhmuc);
+			});
+			
+		})
+	</script>	
+</head>
+<body>
+<div id="_header">Loading...</div>
+
+<!-- content -->
+<div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+					<div class="news-content">
+						<h2 class="page-heading">
+							<span class="page-heading-title" id="id_product_list_title">Sản Phẩm</span>
+						</h2>
+						<!-- Product List -->
+						<div class="container">
+							<ul class="row" id="listPage">	
+								<span id="id_product_list_product_list"></span>								
+							</ul>
+						</div>	
+						<!-- End Product List -->					
+					</div>          
+				</div>
+                <div class="col-md-3">
+						<div id="left_column">
+							
+							<div class="menu-product">
+    <h3>
+        <span>
+            Sản phẩm
+        </span>
+    </h3>
+    <ul class="level_0">
+		<span id="id_product_list_menu_right"></span>	
+		
+	</ul>
+</div>
+							
+							
+						</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-sm-12 col-xs-12">
+
+
+
+
+		</div>
+	</div>
+</div>
+<!-- End content -->	
+
+<div id="_footer">Loading...</div>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
