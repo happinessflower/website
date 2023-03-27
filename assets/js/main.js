@@ -1,18 +1,18 @@
 $(document).ready(function(){
-	fetch("_header.html")
+	fetch("header.html")
 	  .then(response => {
 		return response.text()
 	  })
 	  .then(data => {
-		$("#_header").html(data);
+		$("#header").html(data);
 	  });
 
-	fetch("_footer.html")
+	fetch("footer.html")
 	  .then(response => {
 		return response.text()
 	  })
 	  .then(data => {
-		 $("#_footer").html(data);
+		 $("#footer").html(data);
 	  });
  
   
