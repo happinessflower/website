@@ -1,7 +1,0 @@
-RewriteEngine on
-
-#RewriteRule ^dev-([^/\.]+)\.html dev.html [PT]
-RewriteRule ^product-list-([^/\.]+)\.html product_list.html [PT]
-RewriteRule ^product-detail-([^/\.]+)\.html product_detail.html [PT]
-RewriteRule ^content-([^/\.]+)\.html content.html [PT]
-ErrorDocument 404 http://dev.shop.info.vn/404.html
