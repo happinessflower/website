@@ -1,21 +1,4 @@
 $(document).ready(function(){
-	fetch("header.html")
-	  .then(response => {
-		return response.text()
-	  })
-	  .then(data => {
-		$("#_header").html(data);
-	  });
-
-	fetch("footer.html")
-	  .then(response => {
-		return response.text()
-	  })
-	  .then(data => {
-		 $("#_footer").html(data);
-	  });
- 
-  
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 50) {
 			$('#back-to-top').fadeIn();
