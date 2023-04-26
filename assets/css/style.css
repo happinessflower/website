@@ -1,3 +1,7 @@
+body {
+    font-style: oblique;
+}
+
 a {
     color: #666666;
 }
@@ -589,10 +593,11 @@ p.footer_address {
     margin-bottom: 10px;
 }
 .cate-item span {
-    font-weight: bold;
-    font-size: 16px;
+	font-weight: bold;
+    font-size: 20px;
     display: block;
-    color: #42464e;
+    color: darkgreen;
+    font-style: italic;
 }
 
 .price {
@@ -696,10 +701,16 @@ ul#listPage {
 }
 
 .card img {
+	object-fit: cover;
     height: 200px;
 	background-image: url('../img/no-image.png');
 	background-repeat: no-repeat;
 	background-size: contain;
+}
+
+.cate-item img {
+    object-fit: cover;
+    height: 300px;
 }
 
 .card-title {
